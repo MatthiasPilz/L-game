@@ -9,3 +9,6 @@ This is my first 'project' (I'm still figuring out the difference between projec
 - defined a couple of tasks
 
 ### day one:
+- print empty board and arbitrary position
+- not entirely certain whether notation for position is sensible
+- try to adapt something similar to FEN notation in chess
