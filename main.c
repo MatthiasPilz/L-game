@@ -1,9 +1,10 @@
 #include "defs.h"
 
 int main( int argc, char *argv[] ) {
-	printf( "Hello World!\n" );
 	
-	ASSERT(1 != 1);
+	S_POSITION pos;
+	reset_board( &pos );
+	print_board( &pos );
 	
 	return 0;
 }
