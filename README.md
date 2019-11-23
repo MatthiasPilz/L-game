@@ -9,6 +9,12 @@ This is my first 'project' (I'm still figuring out the difference between projec
 - defined a couple of tasks
 
 ### day one:
-- print empty board and arbitrary position
+- print empty board and starting position
 - not entirely certain whether notation for position is sensible
 - try to adapt something similar to FEN notation in chess
+
+### day two:
+- still not sure how to make use of the 'project' tab on github... this might be useful for collaborations!?
+- was reading old code from a chess implementation and decided that I should also implement this game in C (also to get back into it :) )
+- created a branch to keep the python files
+- create printing functions in C and define board struct
