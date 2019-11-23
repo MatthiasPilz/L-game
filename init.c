@@ -1,6 +1,12 @@
 #include "defs.h"
 #include<string.h>
 
+/*
+ *	input: 			S_POSITION struct *pos
+ *	output:			none (updates pos)
+ *	description: 	Initialise the game position and board according to the 
+ *					standard starting position.
+ */
 void init_position( S_POSITION *pos ) {
 
 	reset_board( pos );
