@@ -1,6 +1,7 @@
 #include "defs.h"
+#include<string.h>
 
-void init_board( S_POSITION *pos ) {
+void init_position( S_POSITION *pos ) {
 
 	reset_board( pos );
 	pos->side = WHITE;
@@ -8,7 +9,7 @@ void init_board( S_POSITION *pos ) {
 	pos->blackL = C4dl;
 	pos->coins[0] = A4;
 	pos->coins[1] = D1;
-	pos->posString = "B1ur/C4dl/A4/D1/w"
+	strcpy( pos->posString, START_POS );
 
 	update_board( pos );	
 }

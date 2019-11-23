@@ -21,7 +21,8 @@
 	#endif
 	
 	#define BOARD_SQ_NUM 80
-	#define STARTPOS "B1ur/C4dl/A4/D1/w"
+	#define START_POS "B1ur/C4dl/A4/D1/w"
+	#define POS_STRING_LENGTH 17
 
 	enum { FALSE, TRUE };
 	
@@ -37,16 +38,17 @@
 	enum { FILE_A, FILE_B, FILE_C, FILE_D, FILE_NONE };
 	enum { RANK_1, RANK_2, RANK_3, RANK_4, RANK_NONE };
 	enum { WHITE, BLACK, BOTH };
+	enum { up, down, left, right, NO_DIR };
 	
 	enum {
-		A3ur, A4ur, B3ur, B4ur, C3ur, C4ur, 	// 	|_
-		B3ul, B4ul, C3ul, C4ul, D3ul, D4ul,		// 		_|
-		C2lu, C3lu, C4lu, D2lu, D3lu, D4lu, 	// __|
-		C1ld, C2ld, C3ld, D1ld, D2ld, D3ld, 	// 		¯¯|
-		B1dl, B2dl, C1dl, C2dl, D1dl, D2dl, 	// 	¯|
-		A1dr, A2dr, B1dr, B2dr, C1dr, C2dr, 	// 		|¯
-		A1rd, A2rd, A3rd, B1rd, B2rd, B3rd, 	// |¯¯
-		A2ru, A3ru, A4ru, B2ru, B3ru, B4ru, 	// 		|__
+		A2ur, A1ur, B2ur, B1ur, C2ur, C1ur, 	// 	|_
+		B2ul, B1ul, C2ul, C1ul, D2ul, D1ul,		// 		_|
+		C3lu, C2lu, C1lu, D3lu, D2lu, D1lu, 	// __|
+		C4ld, C3ld, C2ld, D4ld, D3ld, D2ld, 	// 		¯¯|
+		B4dl, B3dl, C4dl, C3dl, D4dl, D3dl, 	// 	¯|
+		A4dr, A3dr, B4dr, B3dr, C4dr, C3dr, 	// 		|¯
+		A4rd, A3rd, A2rd, B4rd, B3rd, B2rd, 	// |¯¯
+		A3ru, A2ru, A1ru, B3ru, B2ru, B1ru, 	// 		|__
 		NO_MOVE
 		};
 	
@@ -56,7 +58,7 @@
 		int whiteL;
 		int blackL;
 		int coins[2];
-		char posString[];   // 
+		char posString[POS_STRING_LENGTH];   // 
 	} S_POSITION;
 	
 	// MACROS
@@ -68,6 +70,9 @@
 	extern char PceChar[];
 	extern char FileChar[];
 	extern char RankChar[];
+	extern int LPosFields[];
+	extern int LongSideDirection[];
+	extern int ShortSideDirection[];
 	
 	// FUNCTIONS
 	
@@ -77,7 +82,7 @@
 	extern void update_board( S_POSITION *pos );
 	
 	// init.c
-	extern void init_board( S_POSITION *pos );
+	extern void init_position( S_POSITION *pos );
 	
 
 #endif
