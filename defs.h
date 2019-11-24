@@ -6,7 +6,7 @@
 
 	// define ASSERT for debugging
 	// toggle #define DEBUG to turn it on/off
-	#define DEBUG
+	//#define DEBUG
 	#ifndef DEBUG
 		#define ASSERT(n)
 	#else
@@ -47,7 +47,7 @@
 	enum { WHITE, BLACK, BOTH };
 	
 	// possible positions for one L
-	enum {
+	enum LPOSITION {
 		A2ur, A1ur, B2ur, B1ur, C2ur, C1ur, 	// 	|_
 		B2ul, B1ul, C2ul, C1ul, D2ul, D1ul,		// 		_|
 		C3lu, C2lu, C1lu, D3lu, D2lu, D1lu, 	// __|
@@ -74,6 +74,11 @@
 		char posString[POS_STRING_LENGTH];   // 
 	} S_POSITION;
 	
+	typedef struct { 
+		char *key; 
+		int val; 
+	} S_LMOVE;
+	
 	// MACROS
 		// translate file and rank to square on the playing area
 	#define FR2SQ(f,r) ( (23 + (f) ) + ( (r) * 10 ) )
@@ -87,6 +92,24 @@
 	extern int LongSideDirection[];
 	extern int ShortSideDirection[];
 	
+	static S_LMOVE LMoveLookupTable[] = {
+			{"A2ur", A2ur}, {"A1ur", A1ur}, {"B2ur", B2ur}, 	// 	|_
+			{"B1ur", B1ur}, {"C2ur", C2ur}, {"C1ur", C1ur},
+			{"B2ul", B2ul}, {"B1ul", B1ul}, {"C2ul", C2ul}, 	// 		_|
+			{"C1ul", C1ul}, {"D2ul", D2ul}, {"D1ul", D1ul},
+			{"C3lu", C3lu}, {"C2lu", C2lu}, {"C1lu", C1lu}, 	// __| 
+			{"D3lu", D3lu}, {"D2lu", D2lu}, {"D1lu", D1lu},
+			{"C4ld", C4ld}, {"C3ld", C3ld}, {"C2ld", C2ld}, 	// 		¯¯|
+			{"D4ld", D4ld}, {"D3ld", D3ld}, {"D2ld", D2ld}, 
+			{"B4dl", B4dl}, {"B3dl", B3dl}, {"C4dl", C4dl}, 	// 	¯|
+			{"C3dl", C3dl}, {"D4dl", D4dl}, {"D3dl", D3dl}, 
+			{"A4dr", A4dr}, {"A3dr", A3dr}, {"B4dr", B4dr}, 	// 		|¯
+			{"B3dr", B3dr}, {"C4dr", C4dr}, {"C3dr", C3dr}, 
+			{"A4rd", A4rd}, {"A3rd", A3rd}, {"A2rd", A2rd}, 	// |¯¯
+			{"B4rd", B4rd}, {"B3rd", B3rd}, {"B2rd", B2rd}, 
+			{"A3ru", A3ru}, {"A2ru", A2ru}, {"A1ru", A1ru}, 	// 		|__
+			{"B3ru", B3ru}, {"B2ru", B2ru}, {"B1ru", B1ru}};	
+	
 	// FUNCTIONS	
 		// board.c
 	extern void print_board( const S_POSITION *pos );
@@ -94,6 +117,9 @@
 	extern void update_board( S_POSITION *pos );
 	
 		// init.c
-	extern void init_position( S_POSITION *pos );
+	extern void init_startingPosition( S_POSITION *pos );
+	
+		// move.c
+	extern int read_LMove( void );
 	
 #endif

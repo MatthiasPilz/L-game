@@ -44,5 +44,5 @@ int ShortSideDirection[] = {
 				up, 	up, 	up, 	up, 	up, 	up,		// 		|__
 				NO_DIR};				
 				
-				
+			
 				

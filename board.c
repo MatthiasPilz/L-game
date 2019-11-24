@@ -90,12 +90,12 @@ void update_board( S_POSITION *pos ) {
 	
 		// long side
 	direction = LongSideDirection[pos->whiteL];
-    pos->board[cornerWhiteL + direction] = wL;
-    pos->board[cornerWhiteL + 2*direction] = wL;
+	pos->board[cornerWhiteL + direction] = wL;
+	pos->board[cornerWhiteL + 2*direction] = wL;
 
 		// short side
 	direction = ShortSideDirection[pos->whiteL];
-    pos->board[cornerWhiteL + direction] = wL;
+	pos->board[cornerWhiteL + direction] = wL;
     
     
     // BLACK PIECE
@@ -106,19 +106,19 @@ void update_board( S_POSITION *pos ) {
 
 		// long side
 	direction = LongSideDirection[pos->blackL];
-    pos->board[cornerBlackL + direction] = bL;
-    pos->board[cornerBlackL + 2*direction] = bL;
+	pos->board[cornerBlackL + direction] = bL;
+	pos->board[cornerBlackL + 2*direction] = bL;
 	
 		// short side
 	direction = ShortSideDirection[pos->blackL];
-    pos->board[cornerBlackL + direction] = bL;
+	pos->board[cornerBlackL + direction] = bL;
     
     
     // COINS
-    	ASSERT( pos->board[pos->coins[0]] != OFFBOARD );
-    pos->board[pos->coins[0]] = cN;
-    	ASSERT( pos->board[pos->coins[1]] != OFFBOARD );
-    pos->board[pos->coins[1]] = cN;
+		ASSERT( pos->board[pos->coins[0]] != OFFBOARD );
+	pos->board[pos->coins[0]] = cN;
+		ASSERT( pos->board[pos->coins[1]] != OFFBOARD );
+	pos->board[pos->coins[1]] = cN;
 }
 
 // #############################################################################
