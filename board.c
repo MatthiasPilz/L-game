@@ -28,6 +28,11 @@ void reset_board(S_POSITION *pos) {
 			pos->board[FR2SQ(file,rank)] = EMPTY;
 		}
 	}
+	
+	pos->whiteL = NO_MOVE;
+	pos->blackL = NO_MOVE;
+	pos->coins[0] = OFFBOARD;
+	pos->coins[1] = OFFBOARD;
 }
 
 // #############################################################################
@@ -84,41 +89,44 @@ void update_board( S_POSITION *pos ) {
 	
 	// WHITE PIECE
 		// corner piece
-		ASSERT( pos->whiteL < NO_MOVE && pos->whiteL >= 0 );
-	cornerWhiteL = LPosFields[pos->whiteL];
-	pos->board[cornerWhiteL] = wL;
+	if ( pos->whiteL >= 0 && pos->whiteL < NO_MOVE ) { 
+		cornerWhiteL = LPosFields[pos->whiteL];
+		pos->board[cornerWhiteL] = wL;
 	
 		// long side
-	direction = LongSideDirection[pos->whiteL];
-	pos->board[cornerWhiteL + direction] = wL;
-	pos->board[cornerWhiteL + 2*direction] = wL;
+		direction = LongSideDirection[pos->whiteL];
+		pos->board[cornerWhiteL + direction] = wL;
+		pos->board[cornerWhiteL + 2*direction] = wL;
 
 		// short side
-	direction = ShortSideDirection[pos->whiteL];
-	pos->board[cornerWhiteL + direction] = wL;
-    
+		direction = ShortSideDirection[pos->whiteL];
+		pos->board[cornerWhiteL + direction] = wL;
+    }
     
     // BLACK PIECE
     	// corner piece
-		ASSERT( pos->blackL < NO_MOVE && pos->blackL >= 0 );
-	cornerBlackL = LPosFields[pos->blackL];
-	pos->board[cornerBlackL] = bL;
+	if ( pos->blackL >= 0 && pos->blackL < NO_MOVE ) { 
+		cornerBlackL = LPosFields[pos->blackL];
+		pos->board[cornerBlackL] = bL;
 
 		// long side
-	direction = LongSideDirection[pos->blackL];
-	pos->board[cornerBlackL + direction] = bL;
-	pos->board[cornerBlackL + 2*direction] = bL;
+		direction = LongSideDirection[pos->blackL];
+		pos->board[cornerBlackL + direction] = bL;
+		pos->board[cornerBlackL + 2*direction] = bL;
 	
 		// short side
-	direction = ShortSideDirection[pos->blackL];
-	pos->board[cornerBlackL + direction] = bL;
-    
+		direction = ShortSideDirection[pos->blackL];
+		pos->board[cornerBlackL + direction] = bL;
+    }
     
     // COINS
-		ASSERT( pos->board[pos->coins[0]] != OFFBOARD );
-	pos->board[pos->coins[0]] = cN;
-		ASSERT( pos->board[pos->coins[1]] != OFFBOARD );
-	pos->board[pos->coins[1]] = cN;
+	if ( pos->coins[0] != OFFBOARD ) {
+		pos->board[pos->coins[0]] = cN;
+	}
+	
+	if ( pos->coins[1] != OFFBOARD ) {
+		pos->board[pos->coins[1]] = cN;
+	}
 }
 
 // #############################################################################

@@ -21,3 +21,7 @@ This is my first 'project' (I'm still figuring out the difference between projec
 - created a branch to keep the python files
 - create printing functions in C and define board struct
 - added a lot of comments all throughout the code
+
+##### day three:
+- implemented a function to input new L position
+- used this to test whether all positions do what they are expected to

@@ -122,4 +122,7 @@
 		// move.c
 	extern int read_LMove( void );
 	
+		// util.c
+	extern void delay( int number_of_seconds );
+	
 #endif
