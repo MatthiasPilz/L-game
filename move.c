@@ -9,6 +9,10 @@
  *					It is translated to its respective integer representation 
  *					and the integer is returned.
  */
+// TODO
+// - change this to 'parse L move'
+// - add 'parse coin move'
+// - use them in 'get move' function
 int read_LMove( void ) {
 	int result = NO_MOVE;
 	char input[255];
