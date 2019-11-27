@@ -3,16 +3,11 @@
 #include<string.h>
 
 /*
- *	input: 			nothing
- *	output:			integer that corresponds to a L position
- *	description: 	This function prompts the user to enter a L position.
- *					It is translated to its respective integer representation 
- *					and the integer is returned.
+ *	input: 			string representing an L move
+ *	output:			integer that corresponds to a L move
+ *	description: 	This function translates from string representation of an
+ *					L move to its respective integer representation.
  */
-// TODO
-// - change this to 'parse L move'
-// - add 'parse coin move'
-// - use them in 'get move' function
 int parse_LMove( const char *input ) {
 	int result = NO_MOVE;
 	int i = 0;
@@ -28,23 +23,49 @@ int parse_LMove( const char *input ) {
 	return result;
 }
 
+// #############################################################################
+
+/*
+ *	input: 			string representing a coin move
+ *	output:			integer that corresponds to a coin move
+ *	description: 	This function translates from string representation of a
+ *					coin move to its respective inuteger representation.
+ */
 int parse_coinMove( const char *input ) {
 	int result = OFFBOARD;
 	int i = 0;
 	
 	for ( i = 0; i < 16; i++ ) {
-		// TODO
-		// - create coin move struct
-		// - create coin move lookup table
-		// - compare key to input (same as in parse_LMove)
+		S_COINMOVE cmove = coinMoveLookupTable[i];
+		if ( strcmp(cmove.key, input) == 0) {
+			result = cmove.val;
+			break;
+		}
 	}
 	
 	return result;
 }
 
-// TODO
+// #############################################################################
+
+/*
+ *	input: 			nothing
+ *	output:			tuple of the integer representations of L and coin move
+ *	description: 	This function prompts the user to input a move in stdin. 
+ *					The string input is converted to the integer representation
+ *					and is returned as the S_MOVE struct.
+ */
 S_MOVE get_move( void ) {
 	S_MOVE result;
+	
+	// TODO
+	// - read input string from stdin
+	// - split string into lmove and coinmove
+	char input[] = "A2ur D4";
+	char inputL[] = "A2ur";
+	char inputC[] = "D4";
+	result.lMove = parse_LMove( inputL );
+	result.coinMove = parse_coinMove( inputC );
 	return result;
 }
 /*
@@ -57,4 +78,9 @@ S_MOVE get_move( void ) {
     	// don't know yet how to get around it..
     	getchar();
 */    	
+
+
+
+
+
     	

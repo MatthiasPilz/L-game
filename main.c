@@ -5,13 +5,8 @@ int main( int argc, char *argv[] ) {
 	S_POSITION pos;
 	init_startingPosition( &pos );
 	
-	while( TRUE ) {
-		reset_board( &pos );
-		delay(1);
-		//pos.whiteL = read_LMove();
-		update_board( &pos );
-		print_board( &pos );
-	};
+	S_MOVE test = get_move();
+	printf( "lmove: %d, coin: %d\n", test.lMove, test.coinMove );
 	
 	return 0;
 }
