@@ -8,7 +8,7 @@ int main( int argc, char *argv[] ) {
 	while( TRUE ) {
 		reset_board( &pos );
 		delay(1);
-		pos.whiteL = read_LMove();
+		//pos.whiteL = read_LMove();
 		update_board( &pos );
 		print_board( &pos );
 	};

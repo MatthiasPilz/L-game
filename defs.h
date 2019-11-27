@@ -79,6 +79,17 @@
 		int val; 
 	} S_LMOVE;
 	
+	typedef struct { 
+		char *key; 
+		int val; 
+	} S_COINMOVE;
+	
+	typedef struct { 
+		int lMove;
+		int coinMove; 
+		// more?
+	} S_MOVE;
+	
 	// MACROS
 		// translate file and rank to square on the playing area
 	#define FR2SQ(f,r) ( (23 + (f) ) + ( (r) * 10 ) )
@@ -120,7 +131,7 @@
 	extern void init_startingPosition( S_POSITION *pos );
 	
 		// move.c
-	extern int read_LMove( void );
+	extern S_MOVE get_move( void );
 	
 		// util.c
 	extern void delay( int number_of_seconds );
