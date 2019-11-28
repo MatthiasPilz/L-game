@@ -25,3 +25,8 @@ This is my first 'project' (I'm still figuring out the difference between projec
 ##### day three:
 - implemented a function to input new L position
 - used this to test whether all positions do what they are expected to
+
+##### day four:
+- extended previous input function to also receive coin move
+- parse input to obtain integer representation
+- test get_move() function
