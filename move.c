@@ -57,27 +57,31 @@ int parse_coinMove( const char *input ) {
  */
 S_MOVE get_move( void ) {
 	S_MOVE result;
+	char input[255];
+	char inputL[5];
+	char inputC[3];
 	
-	// TODO
-	// - read input string from stdin
-	// - split string into lmove and coinmove
-	char input[] = "A2ur D4";
-	char inputL[] = "A2ur";
-	char inputC[] = "D4";
+	if ( fgets( input, sizeof input, stdin ) ) {
+		input[ strcspn(input, "\n") ] = '\0';
+	
+		// copy first four elements of the input to inputL 
+		// and add terminating char
+		strncpy(inputL, input, 4);
+		inputL[4] = '\0';
+	
+		// copy elements five and six to inputC and add terminating char
+		strncpy(inputC, input+5, 2);
+		inputC[2] = '\0';
+	}
+	else {
+		printf( "ERROR: reading stdin\n" );
+		ASSERT( FALSE );
+	}
+	
 	result.lMove = parse_LMove( inputL );
 	result.coinMove = parse_coinMove( inputC );
 	return result;
-}
-/*
-	// MAYBE USED LATER...
-	if ( fgets( input, sizeof input, stdin ) ) {
-    	input[ strcspn(input, "\n") ] = '\0';
-    	
-    	// TODO
-    	// without this getchar(); the line "Enter L move" is printed twice..
-    	// don't know yet how to get around it..
-    	getchar();
-*/    	
+}   	
 
 
 
