@@ -55,6 +55,10 @@ int parse_coinMove( const char *input ) {
  *					The string input is converted to the integer representation
  *					and is returned as the S_MOVE struct.
  */
+
+// TODO:
+// move has to actually get two positions for the coin (from, to) 
+// think about where the check for validity has to happen
 S_MOVE get_move( void ) {
 	S_MOVE result;
 	char input[255];
