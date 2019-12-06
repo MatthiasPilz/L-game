@@ -58,7 +58,8 @@ int parse_coinMove( const char *input ) {
 
 // TODO:
 // move has to actually get two positions for the coin (from, to) 
-// think about where the check for validity has to happen
+// - think about where the check for validity has to happen
+// - think about placeholders for not moving it!?
 S_MOVE get_move( void ) {
 	S_MOVE result;
 	char input[255];
