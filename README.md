@@ -30,3 +30,8 @@ This is my first 'project' (I'm still figuring out the difference between projec
 - extended previous input function to also receive coin move
 - parse input to obtain integer representation
 - test get_move() function
+
+##### day five:
+- implemented function to read complete position string and parse it
+- testing function 
+- (no collision detection yet)
