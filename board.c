@@ -131,7 +131,24 @@ void update_board( S_POSITION *pos ) {
 
 // #############################################################################
 
-
+/*
+ *	input: 			nothing -- read from command line
+ *	output:			struct S_POSITION according to input
+ *	description: 	Read position string from command line and parse it
+ 					to fit the S_POSITION struct
+ */
+S_POSITION get_position( void ) {
+	S_POSITION result;
+	
+	// TODO
+	// - read position string from command line
+	// - split up into 5 components: lWhite, lBlack, coin0, coin1, side
+	// - parse accordingly
+	// - write to result
+	// - return result
+	
+	return result;
+}
 
 
 
