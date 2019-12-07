@@ -1,6 +1,7 @@
 #include "defs.h"
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 
 // #############################################################################
@@ -132,22 +133,113 @@ void update_board( S_POSITION *pos ) {
 // #############################################################################
 
 /*
- *	input: 			nothing -- read from command line
- *	output:			struct S_POSITION according to input
+ *	input: 			string representing an L position
+ *	output:			integer representation of position
+ *	description: 	This function translates from string representation of an
+ *					L position to its respective integer representation.
+ */
+int parse_integerOfL( char *input ) {
+	int i = 0;
+	int result = NO_MOVE;
+	
+    for ( i = 0; i < 48; i++ ) { 
+    	S_DICT curMove = LMoveLookupTable[i];
+       	if (strcmp(curMove.key, input) == 0) {
+           	result = curMove.val;
+           	break;
+       	}
+    }
+	
+	return result;
+} 
+
+// #############################################################################
+
+/*
+ *	input: 			string representing a coin position
+ *	output:			integer representation of position
+ *	description: 	This function translates from string representation of a
+ *					coin position to its respective integer representation.
+ */
+int parse_integerOfCoin( char *input ) {
+	int i = 0;
+	int result = OFFBOARD;
+	
+    for ( i = 0; i < 48; i++ ) { 
+    	S_DICT curMove = coinMoveLookupTable[i];
+       	if (strcmp(curMove.key, input) == 0) {
+           	result = curMove.val;
+           	break;
+       	}
+    }
+	
+	return result;
+} 
+
+// #############################################################################
+
+/*
+ *	input: 			position 
+ *	output:			none (updates position)
  *	description: 	Read position string from command line and parse it
  					to fit the S_POSITION struct
  */
-S_POSITION get_position( void ) {
-	S_POSITION result;
+void get_position( S_POSITION *pos ) {
+	char input[255];
+	char inputWhiteL[5];
+	char inputBlackL[5];
+	char inputCoin0[3];
+	char inputCoin1[3];
+	char inputSide;
 	
-	// TODO
-	// - read position string from command line
-	// - split up into 5 components: lWhite, lBlack, coin0, coin1, side
-	// - parse accordingly
-	// - write to result
-	// - return result
+	if ( fgets( input, sizeof input, stdin ) ) {
+		input[ strcspn(input, "\n") ] = '\0';
 	
-	return result;
+		// separate input into the five different components
+		strncpy(inputWhiteL, input, 4);
+		inputWhiteL[4] = '\0';
+		
+		strncpy(inputBlackL, input+5, 4);
+		inputBlackL[4] = '\0';
+		
+		strncpy(inputCoin0, input+10, 2);
+		inputCoin0[2] = '\0';
+		
+		strncpy(inputCoin1, input+13, 2);
+		inputCoin1[2] = '\0';
+		
+		inputSide = input[16];
+	}
+	else {
+		printf( "ERROR: reading stdin\n" );
+		ASSERT( FALSE );
+	}
+	
+	// copy full input string onto posString
+	strncpy( pos->posString, input, sizeof(pos->posString) );
+	pos->posString[POS_STRING_LENGTH-1] = '\0';
+	
+	// parse Ls and assign related integer
+	pos->whiteL = parse_integerOfL( inputWhiteL );
+	pos->blackL = parse_integerOfL( inputBlackL );
+	
+	// parse coins and assign related integer
+	pos->coins[0] = parse_integerOfCoin( inputCoin0 );
+	pos->coins[1] = parse_integerOfCoin( inputCoin1 );
+	
+	// determine side from input string
+	if ( inputSide == '0' ) {
+		pos->side = 0;
+	}
+	else if ( inputSide == '1' ) {
+		pos->side = 1;
+	}
+	else {
+		printf( "ERROR: parsing side\n" );
+		ASSERT( FALSE );
+	}
+	
+	update_board( pos );
 }
 
 

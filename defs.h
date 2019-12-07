@@ -23,7 +23,7 @@
 	// MACRO VARIABLES
 	#define BOARD_SQ_NUM 80
 	#define START_POS "B1ur/C4dl/A4/D1/w"
-	#define POS_STRING_LENGTH 17
+	#define POS_STRING_LENGTH 18
 
 	// fake boolean :)
 	enum { FALSE, TRUE };
@@ -136,7 +136,8 @@
 	extern void print_board( const S_POSITION *pos );
 	extern void reset_board( S_POSITION *pos );
 	extern void update_board( S_POSITION *pos );
-	
+	extern void get_position( S_POSITION *pos );
+		
 		// init.c
 	extern void init_startingPosition( S_POSITION *pos );
 	
