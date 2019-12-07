@@ -9,8 +9,11 @@ int main( int argc, char *argv[] ) {
 	while ( TRUE ) {
 		reset_board( &pos );	
 		test = get_move();
-		pos.whiteL = test.lMove;
-		pos.coins[0] = test.coinMove;
+		// this test doesn't actually makes sense in the game 
+		// it is only useful for visualisation
+		pos.whiteL = test.lMove.lPos.val;
+		pos.coins[0] = test.coinMove.from.val;
+		pos.coins[1] = test.coinMove.to.val;
 		update_board( &pos );
 		print_board( &pos );
 	}
